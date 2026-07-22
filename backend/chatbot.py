@@ -8,6 +8,7 @@ from backend.data import (
 
 from backend.intents import INTENTS
 WAITING_FOR_ORDER = False
+WAITING_FOR_PRODUCT = False
 
 def detect_intent(message: str):
     """
@@ -69,6 +70,8 @@ def handle_shipping():
 
 
 def handle_product_recommendation(user_message: str):
+    global WAITING_FOR_PRODUCT
+
     message = user_message.lower()
 
     if "hiking" in message:
@@ -79,7 +82,11 @@ def handle_product_recommendation(user_message: str):
             f"• {products[0]}\n"
             f"• {products[1]}\n"
             f"• {products[2]}\n\n"
-            "Enjoy your hiking adventure! 🌲",
+            "Enjoy your hiking adventure! 🌲\n\n"
+            "Would you like recommendations for another activity?\n"
+            "• Camping 🏕️\n"
+            "• Winter Adventures ❄️\n\n"
+            "Or type 'menu' to return to the main menu.",
             False
         )
 
@@ -91,7 +98,11 @@ def handle_product_recommendation(user_message: str):
             f"• {products[0]}\n"
             f"• {products[1]}\n"
             f"• {products[2]}\n\n"
-            "Have a great camping trip! 🔥",
+            "Have a great camping trip! 🔥\n\n"
+            "Would you like recommendations for another activity?\n"
+            "• Hiking 🥾\n"
+            "• Winter Adventures ❄️\n\n"
+            "Or type 'menu' to return to the main menu.",
             False
         )
 
@@ -103,23 +114,29 @@ def handle_product_recommendation(user_message: str):
             f"• {products[0]}\n"
             f"• {products[1]}\n"
             f"• {products[2]}\n\n"
-            "Stay warm and safe! 🧤",
+            "Stay warm and safe! 🧤\n\n"
+            "Would you like recommendations for another activity?\n"
+            "• Hiking 🥾\n"
+            "• Camping 🏕️\n\n"
+            "Or type 'menu' to return to the main menu.",
             False
         )
 
+    WAITING_FOR_PRODUCT = True
+
     return (
-    "I'd be happy to help you find the right product! 😊\n\n"
-    "First, what type of outdoor activity are you shopping for?\n\n"
-    "• Hiking 🥾\n"
-    "• Camping 🏕️\n"
-    "• Winter Adventures ❄️\n\n"
-    "Also, are you looking for clothing, footwear, or equipment?",
-    False
-)
+        "I'd be happy to help you find the right product! 😊\n\n"
+        "First, what type of outdoor activity are you shopping for?\n\n"
+        "• Hiking 🥾\n"
+        "• Camping 🏕️\n"
+        "• Winter Adventures ❄️\n\n"
+        "Also, are you looking for clothing, footwear, or equipment?",
+        False
+    )
 
 
 def get_bot_response(user_message: str):
-    global WAITING_FOR_ORDER
+    global WAITING_FOR_ORDER, WAITING_FOR_PRODUCT
 
     message = user_message.lower().strip()
 
@@ -135,6 +152,17 @@ def get_bot_response(user_message: str):
             "❌ Invalid order number. Please enter 111, 222, or 333.",
             False
         )
+
+    # If bot is waiting for product category
+    if WAITING_FOR_PRODUCT:
+        if (
+            "hiking" in message
+            or "camp" in message
+            or "camping" in message
+            or "winter" in message
+            or "cold" in message
+        ):
+            return handle_product_recommendation(message)
 
     # Greeting
     if any(keyword in message for keyword in INTENTS["greeting"]):
@@ -153,7 +181,6 @@ def get_bot_response(user_message: str):
     # Order Tracking
     elif any(keyword in message for keyword in INTENTS["order_tracking"]):
 
-        # User typed order number in same message
         for order_number in ORDERS.keys():
             if order_number in message:
                 return handle_order_tracking(order_number)
@@ -177,6 +204,16 @@ def get_bot_response(user_message: str):
     elif any(keyword in message for keyword in INTENTS["product_recommendation"]):
         return handle_product_recommendation(message)
 
+    # Direct Product Category
+    elif (
+        "hiking" in message
+        or "camp" in message
+        or "camping" in message
+        or "winter" in message
+        or "cold" in message
+    ):
+        return handle_product_recommendation(message)
+
     # Human Agent
     elif any(keyword in message for keyword in INTENTS["live_agent"]):
         return (
@@ -188,11 +225,13 @@ def get_bot_response(user_message: str):
 
     # Main Menu
     elif message == "menu":
+
         WAITING_FOR_ORDER = False
+        WAITING_FOR_PRODUCT = False
 
         return (
             f"👋 Welcome to {BOT_INFO['name']}!\n\n"
-            "I can help you with:\n"
+            "I'm here to help you with:\n"
             "• 📦 Order Tracking\n"
             "• 🔄 Returns & Exchanges\n"
             "• 🚚 Shipping Information\n"
