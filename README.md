@@ -19,13 +19,13 @@ Users can check the status of their order by entering a valid order number. The 
 - 333 – Delivered
 
 ### Returns & Exchanges
-The chatbot provides information about the return window, item condition, and packaging requirements.
+The chatbot explains the return policy, including the return window, item condition, and packaging requirements. It also provides a link to a simulated Returns page.
 
 ### Shipping Information
 Users can ask about shipping methods, and the chatbot displays both standard and expedited shipping times.
 
 ### Product Recommendations
-Based on keywords such as **hiking**, **camping**, or **winter**, the chatbot recommends suitable outdoor products.
+The chatbot asks one or two clarifying questions before recommending suitable product categories for activities such as **hiking**, **camping**, or **winter adventures**.
 
 ### Live Agent
 If the user wants additional help, the chatbot can simulate transferring the conversation to a live support agent.
@@ -68,6 +68,7 @@ backend/
 
 frontend/
 │── index.html
+│── returns.html
 │── style.css
 │── script.js
 
@@ -133,6 +134,34 @@ You can try questions like:
 - Hiking
 - Winter gear
 - Live agent
+
+---
+
+## Screenshots
+
+### Home
+![Home](screenshots/home.png)
+
+### Greeting
+![Greeting](screenshots/greeting.png)
+
+### Order Tracking
+![Order Tracking](screenshots/order%20tracking.png)
+
+### Return Policy
+![Return Policy](screenshots/Return%20policy.png)
+
+### Product Recommendation
+![Product Recommendation](screenshots/product%20recommendations.png)
+
+### Live Agent
+![Live Agent](screenshots/Live%20agent.png)
+
+### Shipping
+![Shipping](screenshots/delivery.png)
+
+### Fallback
+![Fallback](screenshots/fallback.png)
 
 ---
 
