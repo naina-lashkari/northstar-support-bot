@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Star Support Bot</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <!-- Header -->
+        <div class="chat-header">
+            <h2>🏕️ North Star Support Bot</h2>
+            <p>Outdoor Customer Support</p>
+            <button id="clear-chat">🗑 Clear Chat</button>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chat-box" class="chat-box">
+
+            <!-- Welcome Message -->
+            <div class="bot-message">
+
+                👋 Welcome to North Star Support!
+
+                <br><br>
+
+                I can help you with:
+
+                <ul>
+                    <li>📦 Track an Order</li>
+                    <li>🔄 Returns & Exchanges</li>
+                    <li>🚚 Shipping Information</li>
+                    <li>🎒 Product Recommendations</li>
+                    <li>👨‍💼 Live Agent</li>
+                </ul>
+
+                Type your question below.
+
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="quick-actions">
+
+                <button onclick="quickMessage('Track my order')">
+                    📦 Track Order
+                </button>
+
+                <button onclick="quickMessage('Return policy')">
+                    🔄 Returns
+                </button>
+
+                <button onclick="quickMessage('Shipping')">
+                    🚚 Shipping
+                </button>
+
+                <button onclick="quickMessage('Camping')">
+                    🎒 Products
+                </button>
+
+                <button onclick="quickMessage('Live agent')">
+                    👨‍💼 Live Agent
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+
+            <input
+                id="user-input"
+                type="text"
+                placeholder="Type your message..."
+            >
+
+            <button id="send-btn">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
