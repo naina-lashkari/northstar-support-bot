@@ -7,6 +7,7 @@ from backend.data import (
 )
 
 from backend.intents import INTENTS
+print(INTENTS["shipping"])
 WAITING_FOR_ORDER = False
 WAITING_FOR_PRODUCT = False
 
@@ -63,8 +64,12 @@ def handle_returns():
 
 def handle_shipping():
     return (
-        f"📦 Standard Shipping: {SHIPPING['standard']}\n\n"
-        f"⚡ Expedited Shipping: {SHIPPING['expedited']}",
+        "🚚 Shipping Information\n\n"
+        f"📦 Standard Shipping: {SHIPPING['standard']}\n"
+        "Perfect for regular deliveries.\n\n"
+        f"⚡ Expedited Shipping: {SHIPPING['expedited']}\n"
+        "Best if you need your order quickly.\n\n"
+        "Let me know if you need help with your order or shipping.",
         False
     )
 
@@ -165,7 +170,7 @@ def get_bot_response(user_message: str):
             return handle_product_recommendation(message)
 
     # Greeting
-    if any(keyword in message for keyword in INTENTS["greeting"]):
+    if message in INTENTS["greeting"]:
         return (
             f"👋 Hello! Welcome to {BOT_INFO['name']}!\n\n"
             "I'm here to help you with:\n"

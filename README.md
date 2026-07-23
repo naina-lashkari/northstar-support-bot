@@ -145,22 +145,49 @@ You can try questions like:
 ### Greeting
 ![Greeting](screenshots/greeting.png)
 
+### Menu
+![Menu](screenshots/Menu.png)
+
 ### Order Tracking
 ![Order Tracking](screenshots/order%20tracking.png)
+
+### Order Tracking - Order #222
+![Order Tracking 2](screenshots/order%20tracking%20(2).png)
+
+### Order Tracking - Order #333
+![Order Tracking 3](screenshots/order%20tracking%20(3).png)
+
+### Track Command
+![Track](screenshots/track.png)
+
+### Track My Package
+![Track My Package](screenshots/track%20my%20package.png)
+
+### Where Is My Package
+![Where Is My Package](screenshots/whereismypackage.png)
+
+### Shipping Information
+![Shipping](screenshots/shipping.png)
+
+### Delivery Information
+![Delivery](screenshots/delivery.png)
 
 ### Return Policy
 ![Return Policy](screenshots/Return%20policy.png)
 
+### Return Page
+![Return Page](screenshots/Return%20page.png)
+
 ### Product Recommendation
 ![Product Recommendation](screenshots/product%20recommendations.png)
+
+### Camping Recommendation
+![Camping Recommendation](screenshots/camping.png)
 
 ### Live Agent
 ![Live Agent](screenshots/Live%20agent.png)
 
-### Shipping
-![Shipping](screenshots/delivery.png)
-
-### Fallback
+### Fallback Response
 ![Fallback](screenshots/fallback.png)
 
 ---
